@@ -1,0 +1,26 @@
+h1 {
+  text-align: center;
+  size: 50px;
+  color: darkmagenta;
+}
+
+#bars {
+  margin: auto;
+  width: 80%;
+  display: flex;
+  height: 200px;
+  align-items: flex-end;
+  background-image: url("delfin.gif");
+  border: 10px turquoise solid;
+}
+
+.bar {
+  width: 200px;
+  flex-grow: 1;
+  background-image: url("klaus.jpg");
+  background-size: cover;
+  border-radius: 3px;
+  border: 1px black solid;
+  margin: 1px;
+  height: 100%;
+}

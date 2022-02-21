@@ -4,13 +4,14 @@ window.addEventListener("DOMContentLoaded", start);
 
 
 const Animal={
-    name:"-g-",
-    type: "-unknown-",
-    desc: "-g-",
+    name:"",
+    type: "",
+    desc: "",
     age: 0
 };
 
 const allAnimals = [];
+
 
 function start( ) {
     console.log("ready");

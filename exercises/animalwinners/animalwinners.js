@@ -77,7 +77,7 @@ function displayAnimal( animal ) {
     // set clone data
 
     
-    // TODO: Display winner
+
 
     // TODO: Display star
     if(animal.star){
@@ -86,11 +86,11 @@ function displayAnimal( animal ) {
         clone.querySelector("[data-field=star]").textContent = "☆";
     }
 
-
+ // TODO: Display winner
     if(animal.winner){
         clone.querySelector("[data-field=winner]").textContent = "🏆";
     } else{
-        clone.querySelector("[data-field=winner]").textContent = "😐";
+        clone.querySelector("[data-field=winner]").textContent = "hej";
     }
 
 
@@ -119,7 +119,7 @@ if(animal.star){
 
     clone.querySelector("[data-field=winner]").addEventListener("click", clickWinner);
 
-    function clickStar(){
+    function clickWinner(){
 if(animal.winner){
     animal.winner = false;
 } else {

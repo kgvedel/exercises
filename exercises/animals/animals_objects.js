@@ -35,11 +35,11 @@ function prepareObjects( jsonData ) {
         //Creating new object
         const animal = Object.create(Animal);
      
-const fullname = jsonObject.fullname;
+const fullname = jsonObject.fullname.trim();
 
 
 const firstSpace = fullname.indexOf(" ");
-const secondSpace = fullname.indexOf(" ", firstSpace + 1);
+const secondSpace = fullname.indexOf(" "+1, firstSpace + 1);
 const lastSpace = fullname.lastIndexOf(" ");
 
 const name = fullname.substring(0, firstSpace);

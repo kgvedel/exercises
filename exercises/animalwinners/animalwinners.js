@@ -76,9 +76,6 @@ function displayAnimal( animal ) {
 
     // set clone data
 
-    
-
-
     // TODO: Display star
     if(animal.star){
         clone.querySelector("[data-field=star]").textContent = "⭐";
@@ -92,10 +89,6 @@ function displayAnimal( animal ) {
     } else{
         clone.querySelector("[data-field=winner]").textContent = "hej";
     }
-
-
-
-
 
     clone.querySelector("[data-field=name]").textContent = animal.name;
     clone.querySelector("[data-field=desc]").textContent = animal.desc;

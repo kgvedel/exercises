@@ -8,42 +8,34 @@
     <link rel="stylesheet" href="style.css" /></head>
 <body>
 
+  <header>
+    
+  </header>
+<main></main>
     <h1>Hogwarts Students</h1>
 
-    <table id="list">
-        <thead>
-          <tr>
-            <th>Fullname</th>
-            <th>Firstname</th>
-           <!--  <th>Nickname</th> -->
-            <th>Middlename</th>
-            <th>Lastname</th>
-            <th>House</th>
-            <th>Gender</th>
-            <th>Bloodstatus</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- animal template will be copied and inserted here -->
-          
-        </tbody>
-      </table>
+    <p>
+      Filter:
+      <button class="filter" data-action="filter" data-filter="gryffindor">Gryffindor</button>
+      <button class="filter" data-action="filter" data-filter="slythering">Slythering</button>
+      <button class="filter" data-action="filter" data-filter="hufflepuff">Hufflepuff</button>
+      <button class="filter" data-action="filter" data-filter="ravenclaw">Ravenclaw</button>
+      <button class="filter" data-action="filter" data-filter="*">Show all</button>
+    </p>
   
-      <template id="student">
-        <tr>
-          <td data-field="fullname">Fullname</td>
-          <td data-field="firstname">Firstname</td>
-         <!--  <td data-field="nickname">Nickname</td> -->
-          <td data-field="middlename">Middlename</td>
-          <td data-field="lastname">Lastname</td>
-          <td data-field="house">House</td>
-          <td data-field="gender">Gender</td>
-          <td data-field="bloodstatus">Bloodstatus</td>
-        </tr>
-      </template>
+<section id="student_list"> </section>
 
-
-
+      <template id="student_template">
+        <article>
+<img src="" alt="" class="image">
+<p data-field="firstname"></p>
+<p data-field="nickname"></p>
+<p data-field="middlename"></p>
+<p data-field="lastname"></p>
+<p data-field="house"></p>
+<p data-field="gender"></p>
+        </article>
+        </template>
     <script src="script.js"></script>
 </body>
 </html>

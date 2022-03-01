@@ -4,23 +4,57 @@ window.addEventListener("DOMContentLoaded", start);
 
 //Template object for student
 const Student ={
-    fullname: "",
     firstname: "",
     middlename: "",
     nickname: "",
     lastname: "",
     gender: "",
     house: "",
-    bloodstatus: "",
     image: "",
 }
 
 //The student array
 let allStudents = [];
 
+//Variable for the filter function
+let filteredStu;
+
 function start(){
     console.log("start");
+
+    document.querySelectorAll("[data-action='filter']").forEach((btn) => {
+        btn.addEventListener("click", studentClick);
+    });
+
     loadJSON();
+}
+
+function studentClick(evt){
+    const myFilter = evt.target.dataset.filter;
+    if (myFilter === "*"){
+        filteredStu = allStudents;
+        displayList(filteredStu);
+    } else {
+        isStudent(myFilter);
+    }
+
+    console.log("Yo", evt.target.dataset.filter);
+}
+
+function isStudent(house){
+    console.log("House", house);
+
+    let studentList = allStudents.filter(isStudentType);
+
+    function isStudentType(student, house){
+        if(student.house === house.charAt(0).toUpperCase() + house.substring(1).toLowerCase()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    displayList(studentList);
 }
 
 
@@ -41,60 +75,46 @@ async function loadJSON() {
             const student = Object.create(Student);
 
             //First I trim the array, so I am sure that when I split it, the names with first and lastname only contains an index of 2 instead of 3
-            const fullName = jsonObject.fullname.trim();
+            let originalName = jsonObject.fullname.trim();
             //Here I am splitting the string into array, so I can define variables for each index.
-            let fullname = fullName.split(" ");
-            let firstname = fullname[""];
-            let middlename = fullname[""];
-            let lastname = fullname[""];
+            originalName = originalName.split(" ");
+            let firstname = originalName[0].charAt(0).toUpperCase() + originalName[0].substring(1).toLowerCase();
+            let middlename;
+            let lastname;
+            let nickname;
+
             const gender = jsonObject.gender;
-            const house = jsonObject.house;
+            const house = jsonObject.house.trim();
             
             //I console it to check the length of the splittet string in objects
-            console.log(fullname.length);
+            console.log(originalName.length);
 
             //Making an if statement, so if the length of the splittet array is equal to 1, then lastname is the middlename and the other way around
-            if(fullname.length === 2){
-                firstname = fullname[0];
-                lastname = fullname[1];
-                //middleName = lastName;
-            } else {
-                firstname = fullname[0];
-                middlename = fullname[1];
-                lastname = fullname[2];
+            if(originalName.length === 2){
+                lastname = originalName[1].charAt(0).toUpperCase() + originalName[1].substring(1).toLowerCase();
+               
+            } else if (originalName.length === 3){
+               middlename = originalName[1].charAt(0).toUpperCase() + originalName[1].substring(1).toLowerCase();
+               lastname =  originalName[2].charAt(0).toUpperCase() + originalName[2].substring(1).toLowerCase();
+          
+if(middlename.includes(`"`)){
+    middlename = undefined;
+    nickname = originalName[1];
+    //Here I remove the "" from the nicknames and make them set to Uppercase at first letter
+    let firstQuotationmark = nickname.indexOf(`"`);
+    let lastQuotationmark = nickname.lastIndexOf(`"`);
+    nickname = nickname.substring(firstQuotationmark + 1, lastQuotationmark).charAt(0).toUpperCase() + nickname.substring(firstQuotationmark + 1, lastQuotationmark).substring(1).toLowerCase();
+}
+
             }
-
-            //Here I make sure the first letter is uppercase and the rest is lowercase
-            firstname = firstname.charAt(0).toUpperCase() + firstname.substring(1).toLowerCase();
-            //console.log(`Firstname: ${firstName} Middlename: ${middleName} Lastname: ${lastName}`);
-
             //Here I declare it so it fits to the template and make sure to join the fullname
-            student.fullname = fullname.join(" ");
-            student.firstname = firstname;
-            student.middlename = middlename;
-           // student.nickname = nickname;
-            student.lastname = lastname;
-            student.gender = gender;
-            student.house = house;
-
-/*             const firstSpace = fullname.indexOf(" ");
-            const lastSpace = fullname.lastIndexOf(" ");
-            const firstLine = fullname.indexOf("/");
-            const lastLine = fullname.lastIndexOf("/");
-
-
-            const firstname = fullname.substring(0, firstSpace);
-            const middlename = fullname.substring(firstSpace+1,lastSpace);
-            const nickname = fullname.substring(firstLine, lastLine)
-            const lastname = fullname.substring(lastSpace);
-
-            console.log(`Firstname: ${firstName} Middlename: ${middleName} Lastname: ${lastName}`);
-
             student.firstname = firstname;
             student.middlename = middlename;
             student.nickname = nickname;
-            student.lastname = lastname;*/
-
+            student.lastname = lastname;
+            student.gender = gender.charAt(0).toUpperCase() + gender.substring(1).toLowerCase();
+            student.house = house.charAt(0).toUpperCase() + house.substring(1).toLowerCase();
+            //Here I push my array into the student template
             allStudents.push(student); 
            
 
@@ -103,31 +123,29 @@ async function loadJSON() {
         displayList();
     }
 
+
      function displayList(){
         //Clear the list
-        document.querySelector("#list tbody").innerHTML = "";
-
+      document.querySelector("#student_list").innerHTML = "";
         //Build a new list
-        allStudents.forEach(displayStudent);
+     allStudents.forEach(displayStudent);
     }
 
     function displayStudent(student){
         //Creating a clone
-        const clone = document.querySelector("#student").content.cloneNode(true);
+        const clone = document.querySelector("#student_template").content.cloneNode(true);
         
-                // set clone data
-        clone.querySelector("[data-field=fullname]").textContent = student.fullname;
-        clone.querySelector("[data-field=firstname]").textContent = student.firstname;
-       // clone.querySelector("[data-field=nickname]").textContent = student.type;
-        clone.querySelector("[data-field=middlename]").textContent = student.middlename;
-        clone.querySelector("[data-field=lastname]").textContent = student.lastname;
-        clone.querySelector("[data-field=gender]").textContent = student.gender;
-        clone.querySelector("[data-field=house]").textContent = student.house;
-
-
+        // set clone data
+        clone.querySelector("[data-field=firstname]").textContent = "Firstname: " + student.firstname;
+        clone.querySelector("[data-field=nickname]").textContent = "Nickname: " + student.nickname;
+        clone.querySelector("[data-field=middlename]").textContent = "Middlename: " + student.middlename;
+        clone.querySelector("[data-field=lastname]").textContent = "Lastname: " + student.lastname;
+        clone.querySelector("[data-field=gender]").textContent = "Gender: " + student.gender;
+        clone.querySelector("[data-field=house]").textContent = "House: " + student.house;
+       // clone.querySelector(".image").src = "images/" + student.lastname.substring(student.lastname.lastIndexOf(""), student.lastname.indexOf("-") + 1).toLowerCase() + "_" + student.firstname.substring(0, 1).toLowerCase() + ".png";
 
         // append clone to list
-        document.querySelector("#list tbody").appendChild( clone );
+        document.querySelector("#student_list").appendChild( clone );
     
     
     

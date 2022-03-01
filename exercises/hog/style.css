@@ -1,0 +1,62 @@
+#student_list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+}
+article {
+  margin-top: 2rem;
+  border-style: solid;
+  padding: 10px;
+}
+
+img {
+  max-width: 60%;
+}
+
+body {
+  background-color: rgb(185, 161, 133);
+}
+
+button {
+  cursor: pointer;
+  width: 6rem;
+  background-color: rgb(66, 37, 30);
+  border: rgb(150, 99, 86);
+  border-style: dashed;
+  border-width: 3px;
+  box-shadow: rgb(0, 0, 0) 1px 1px 3px;
+  padding: 5px;
+  color: rgb(255, 255, 255);
+}
+
+/* Gryffindor button */
+button.filter:nth-child(1):hover {
+  border: #ae0001;
+  background-color: #740001;
+  border-style: dashed;
+}
+/* Slytherin button */
+button.filter:nth-child(2):hover {
+  border: #2a623d;
+  background-color: #1a472a;
+  border-style: dashed;
+}
+/* Hufflepuf button */
+button.filter:nth-child(3):hover {
+  border: #fff4b1;
+  background-color: #ffdb00;
+  border-style: dashed;
+  color: black;
+}
+/* Ravenclaw button */
+button.filter:nth-child(4):hover {
+  border: #2e3e72;
+  background-color: #0e1a40;
+  border-style: dashed;
+}
+/* Show all button */
+button:hover {
+  border: rgb(66, 37, 30);
+  background-color: rgb(150, 99, 86);
+  border-style: dashed;
+}

@@ -1,20 +1,63 @@
+@font-face {
+  font-family: "MagicSchoolOne";
+  src: url(font/MagicSchoolOne.ttf);
+}
+
 #student_list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   gap: 20px;
 }
+
 article {
   margin-top: 2rem;
-  border-style: solid;
-  padding: 10px;
+  background-color: rgb(66, 37, 30);
+  border: rgb(150, 99, 86);
+  border-style: dashed;
+  border-width: 3px;
+  box-shadow: rgb(0, 0, 0) 1px 1px 3px;
+  padding: 5px;
+  color: rgb(255, 255, 255);
 }
 
-img {
-  max-width: 60%;
+.filterButtons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.numbersOfStudents {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.logoH {
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+
+.image {
+  width: 20%;
+}
+
+h1 {
+  font-family: "MagicSchoolOne";
+  text-align: center;
+  font-size: 6rem;
+  margin: 0;
 }
 
 body {
+  max-width: 1000px;
+  margin: auto;
   background-color: rgb(185, 161, 133);
+}
+
+header {
+  display: flex;
+  justify-content: center;
 }
 
 button {
@@ -35,12 +78,33 @@ button.filter:nth-child(1):hover {
   background-color: #740001;
   border-style: dashed;
 }
+
+.gdStudents {
+  border: #ae0001;
+  background-color: #740001;
+  border-style: dashed;
+  padding: 5px;
+  border-width: 3px;
+  box-shadow: rgb(0, 0, 0) 1px 1px 3px;
+  color: white;
+}
 /* Slytherin button */
 button.filter:nth-child(2):hover {
   border: #2a623d;
   background-color: #1a472a;
   border-style: dashed;
 }
+
+.srStudents {
+  border: #2a623d;
+  background-color: #1a472a;
+  border-style: dashed;
+  padding: 5px;
+  border-width: 3px;
+  box-shadow: rgb(0, 0, 0) 1px 1px 3px;
+  color: white;
+}
+
 /* Hufflepuf button */
 button.filter:nth-child(3):hover {
   border: #fff4b1;
@@ -48,15 +112,46 @@ button.filter:nth-child(3):hover {
   border-style: dashed;
   color: black;
 }
+
+.hpStudents {
+  border: #fff4b1;
+  background-color: #ffdb00;
+  border-style: dashed;
+  padding: 5px;
+  border-width: 3px;
+  box-shadow: rgb(0, 0, 0) 1px 1px 3px;
+  color: black;
+}
+
 /* Ravenclaw button */
 button.filter:nth-child(4):hover {
   border: #2e3e72;
   background-color: #0e1a40;
   border-style: dashed;
 }
+.rcStudents {
+  border: #2e3e72;
+  background-color: #0e1a40;
+  border-style: dashed;
+  padding: 5px;
+  border-width: 3px;
+  box-shadow: rgb(0, 0, 0) 1px 1px 3px;
+  color: white;
+}
+
 /* Show all button */
 button:hover {
   border: rgb(66, 37, 30);
   background-color: rgb(150, 99, 86);
   border-style: dashed;
+}
+
+.total {
+  border: rgb(66, 37, 30);
+  background-color: rgb(150, 99, 86);
+  border-style: dashed;
+  padding: 5px;
+  border-width: 3px;
+  box-shadow: rgb(0, 0, 0) 1px 1px 3px;
+  color: white;
 }

@@ -10,7 +10,8 @@ const Student ={
     lastname: "",
     gender: "",
     house: "",
-    image: "",
+    bloodtype: "",
+    image: ""
 }
 
 //The student array
@@ -22,14 +23,18 @@ let filteredStu;
 function start(){
     console.log("start");
 
-    document.querySelectorAll("[data-action='filter']").forEach((btn) => {
+    //Here I add eventlistener for all my filter buttons
+     document.querySelectorAll("[data-action='filter']").forEach((btn) => {
         btn.addEventListener("click", studentClick);
     });
-
+    
+    //Here I call functions
     loadJSON();
+
 }
 
-function studentClick(evt){
+
+ function studentClick(evt){
     const myFilter = evt.target.dataset.filter;
     if (myFilter === "*"){
         filteredStu = allStudents;
@@ -44,31 +49,42 @@ function studentClick(evt){
 function isStudent(house){
     console.log("House", house);
 
-    let studentList = allStudents.filter(isStudentType);
+    let list = allStudents.filter(isStudentType);
 
-    function isStudentType(student, house){
-        if(student.house === house.charAt(0).toUpperCase() + house.substring(1).toLowerCase()){
+    function isStudentType(student){
+        if(student.house === house){
             return true;
         } else {
             return false;
         }
     }
-
-    displayList(studentList);
+    displayList(list);
 }
 
 
+
+//Here I fetch the data for both json files
 async function loadJSON() {
-    const response = await fetch("jason_derulo.json");
+    //Json over students
+    const response = await fetch('https://petlatkea.dk/2021/hogwarts/students.json');
     const jsonData = await response.json();
 
+    //Json over blood data
+    const responseB = await fetch('https://petlatkea.dk/2021/hogwarts/families.json');
+    const jsonDataB = await responseB.json();
+
     //Calling my preparedObjects function with jsonData as parameter.
+
     preparedObjects(jsonData);
+    bloodType(jsonDataB);
+
+    console.log( jsonData);
     
 }
 
-    //Preparing the array and implementing it in the template Student and adding new variables
-    function preparedObjects(jsonData){
+//Preparing the array and implementing it in the template Student and adding new variables
+    function preparedObjects(jsonData, jsonDataB){
+
         jsonData.forEach(jsonObject => {
 
             //Creating new object
@@ -83,8 +99,8 @@ async function loadJSON() {
             let lastname;
             let nickname;
 
-            const gender = jsonObject.gender;
-            const house = jsonObject.house.trim();
+            let gender = jsonObject.gender;
+            let house = jsonObject.house.trim();
             
             //I console it to check the length of the splittet string in objects
             console.log(originalName.length);
@@ -107,30 +123,85 @@ if(middlename.includes(`"`)){
 }
 
             }
+
+
+            function getImage(firstname, lastname) {
+                let image
+                if(lastname == "Patil"){
+                    image = `images/${lastname.substring(lastname.lastIndexOf(""), lastname.indexOf("-") + 1)
+                    .toLowerCase()}_${firstname.toLowerCase()}.png`;
+                } else{
+                 image = `images/${lastname.substring(lastname.lastIndexOf(""), lastname.indexOf("-") + 1)
+                .toLowerCase()}_${firstname.substring(0, 1).toLowerCase()}.png`;
+            }
+                return image;
+            
+              }
+              if (lastname) {
+                student.image = getImage(firstname, lastname);
+              } else student.image = null;
+            
+
             //Here I declare it so it fits to the template and make sure to join the fullname
             student.firstname = firstname;
             student.middlename = middlename;
             student.nickname = nickname;
             student.lastname = lastname;
             student.gender = gender.charAt(0).toUpperCase() + gender.substring(1).toLowerCase();
-            student.house = house.charAt(0).toUpperCase() + house.substring(1).toLowerCase();
+            student.house = house.charAt(0).toUpperCase() + house.substring(1).toLowerCase();  
+            
+            if (lastname) {
+            student.image = getImage(firstname, lastname);
+            } else student.image = "images/null.png";
+
+            
+
             //Here I push my array into the student template
             allStudents.push(student); 
            
-
-            
         });
-        displayList();
+
+        displayList(allStudents);
+        countingStudent(allStudents);
+
+
     }
 
 
-     function displayList(){
+    function bloodType(addBlood){
+        const pureblood = addBlood.pure;
+        const halfblood = addBlood.half;
+
+        allStudents.forEach((student) => {
+            pureblood.forEach((pure) => {
+                if(student.lastname === pure){
+                    student.blood = "pure";
+                } else {
+                    halfblood.forEach((half) => {
+                        if (student.lastname === half){
+                            student.blood = "half";
+                        }
+                    });
+                }
+            });
+            if(!student.blood) {
+                student.blood = "Muggle";
+            }
+            console.log(student);
+        });
+
+    }
+
+//Here is my displaylist function where I copy my array into the displaystudent function
+     function displayList(students){
         //Clear the list
       document.querySelector("#student_list").innerHTML = "";
         //Build a new list
-     allStudents.forEach(displayStudent);
+     students.forEach(displayStudent);
     }
 
+
+    //Here I display all the students in the article/list
     function displayStudent(student){
         //Creating a clone
         const clone = document.querySelector("#student_template").content.cloneNode(true);
@@ -142,11 +213,67 @@ if(middlename.includes(`"`)){
         clone.querySelector("[data-field=lastname]").textContent = "Lastname: " + student.lastname;
         clone.querySelector("[data-field=gender]").textContent = "Gender: " + student.gender;
         clone.querySelector("[data-field=house]").textContent = "House: " + student.house;
+        clone.querySelector(".image").src = student.image;
        // clone.querySelector(".image").src = "images/" + student.lastname.substring(student.lastname.lastIndexOf(""), student.lastname.indexOf("-") + 1).toLowerCase() + "_" + student.firstname.substring(0, 1).toLowerCase() + ".png";
 
         // append clone to list
         document.querySelector("#student_list").appendChild( clone );
-    
-    
-    
+
     } 
+
+    //Here is my counter function where I show how many students in every house and total
+    function countingStudent(student){
+
+        //Here I call the counter for the students
+        displayCountingStudent(totalStudents(), gryffindorStudent(), slytherinStudent(), hufflepuffStudent(), ravenclawStudent());
+
+        function totalStudents(){
+            return student.length;
+        }
+
+        function gryffindorStudent() {
+            let counter = 0;
+            for (let i = 0; i < student.length; i++) {
+                if (student[i].house === 'Gryffindor') counter++;
+            }
+            console.log(counter);
+            return counter;
+        }
+            
+        function slytherinStudent() {
+            let counter = 0;
+            for (let i = 0; i < student.length; i++) {
+                if (student[i].house === 'Slytherin') counter++;
+            }
+            console.log(counter);
+            return counter;
+        }
+
+        function hufflepuffStudent() {
+            let counter = 0;
+            for (let i = 0; i < student.length; i++) {
+                if (student[i].house === 'Hufflepuff') counter++;
+            }
+            console.log(counter);
+            return counter;
+        }
+
+        function ravenclawStudent() {
+            let counter = 0;
+            for (let i = 0; i < student.length; i++) {
+                if (student[i].house === 'Ravenclaw') counter++;
+            }
+            console.log(counter);
+            return counter;
+        }
+
+        
+    }
+
+    function displayCountingStudent(total, hufflepuffNumber, ravenclawNumber, gryffindorNumber, slytherinNumber, expelled) {
+        document.querySelector(".total").textContent += total;
+        document.querySelector(".hpStudents").textContent += " " + hufflepuffNumber;
+        document.querySelector(".rcStudents").textContent += " " + ravenclawNumber;
+        document.querySelector(".gdStudents").textContent += " " + gryffindorNumber;
+        document.querySelector(".srStudents").textContent += " " + slytherinNumber;
+    }

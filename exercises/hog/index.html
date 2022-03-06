@@ -12,7 +12,7 @@
     <img class="logoH" src="images/hogwarts.svg" alt="logo" class="image">
   </header>
 
-<main></main>
+<main>
 
     <h1>Hogwarts Students</h1>
 
@@ -42,22 +42,33 @@
       </form>
     </div>
 
-  
-    <div class="sortBox"> 
- <label for="dropdown">Sort students by name</label>
- <select name="dropdown" id="dropdown">
-<option value="0">A-Z</option>
-<option value="1">Z-A</option>
- </select>
-</div>
-  
-<section id="student_list"> </section>
 
+
+    <thead>
+      <tr id="sorting">
+        <th data-action="sort" data-sort-direction="asc" data-sort="prefect">🏆</th>
+        <th data-action="sort" data-sort-direction="asc" data-sort="inquisitorial">⭐</th>
+        <th data-action="sort" data-sort-direction="asc" data-sort="firstnameAz">Name (a-z)</th>
+        <th data-action="sort" data-sort-direction="asc" data-sort="firstnameZa">Name (z-a)</th>
+        <th data-action="sort" data-sort-direction="asc" data-sort="lastnameAz">Lastname (a-z)</th>
+        <th data-action="sort" data-sort-direction="asc" data-sort="lastnameZa">Lastname (z-a)</th>
+        <th data-action="sort" data-sort-direction="asc" data-sort="houseAz">House (a-z)</th>
+        <th data-action="sort" data-sort-direction="asc" data-sort="houseZa">House (z-a)</th>
+        <th></th>
+      </tr>
+    </thead>
+    
+<!-- This is where I copy the list in -->
+ <section id="student_list"> </section>
+
+
+
+<!-- This is the popup window and the article -->
 <section id="popup">
 
   <div id="close">&#x2715</div>
 
-  <article class="popupWindow">
+  <article id="popupWindow">
 
       <img src="" alt="" class="image">
       <p data-field="firstname"></p>
@@ -67,20 +78,32 @@
       <p data-field="house"></p>
       <p data-field="gender"></p>
       <p data-field="blood"></p>
+      <p data-field="prefect" data-prefect="false"></p>
+      <p data-field="inquisitorial">☆</p>  
       <img src="" alt="" class="crest">
 
   </article>
 </section>
 
+
+<!-- this is the student template how its going to look -->
       <template id="student_template">
+
         <article id="studentArticle">
 
 <img src="" alt="" class="image">
 <p data-field="fullname"></p>
 <p data-field="house"></p>
+<p data-field="prefect" data-prefect="false"></p>
+<p data-field="inquisitorial">☆</p>
+<button class="showMbtn">Show more</button>
 
         </article>
         </template>
+
+
+
+      </main>
     <script src="script.js"></script>
 </body>
 </html>

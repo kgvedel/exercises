@@ -46,19 +46,36 @@ article {
 h1 {
   font-family: "MagicSchoolOne";
   text-align: center;
-  font-size: 6rem;
-  margin: 0;
+  font-size: 10rem;
+  margin-top: -13rem;
+  margin-bottom: 1rem;
+  color: black;
+}
+
+main {
+  max-width: 1055px;
+  padding: 5rem;
+  margin: auto;
+  background-color: #7400025b;
+  border: #ffdb00;
+  border-style: dashed;
+  border-radius: 50px;
 }
 
 body {
-  max-width: 1055px;
-  margin: auto;
-  background-color: rgb(185, 161, 133);
+  background: url("ui/hogg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 header {
   display: flex;
   justify-content: center;
+}
+
+header img {
+  width: 25%;
 }
 
 button {
@@ -120,11 +137,6 @@ button.filter:nth-child(1):hover {
   border-width: 3px;
   box-shadow: rgb(0, 0, 0) 1px 1px 3px;
   color: white;
-}
-
-.Gryffindor {
-  border: #ae0001;
-  background-color: #740001;
 }
 
 /* Slytherin button */
@@ -217,7 +229,6 @@ button:hover {
   display: flex;
   margin: 8rem auto;
   padding: 20px;
-  background-color: rgb(150, 99, 86);
   height: auto;
   flex-direction: column;
   justify-content: center;
@@ -230,5 +241,46 @@ button:hover {
   margin: auto;
   font-weight: bolder;
   color: white;
+  cursor: pointer;
+}
+
+/*Themes for individual houses*/
+.Gryffindor {
+  background-color: rgb(175, 55, 55);
+  border: 5px solid rgb(214, 157, 34);
+}
+
+.Ravenclaw {
+  background-color: rgb(46, 61, 129);
+  border: 5px solid rgb(166, 186, 204);
+}
+
+.Hufflepuff {
+  background-color: rgb(231, 202, 72);
+  border: 5px solid rgb(36, 36, 36);
+  color: black;
+}
+.Slytherin {
+  background-color: rgb(33, 110, 65);
+  border: 5px solid rgb(163, 187, 201);
+}
+
+/* Prefect/winner styling */
+p[data-field="prefect"]::after {
+  content: "🏆";
+}
+
+p[data-field="prefect"][data-prefect="false"]::after {
+  filter: grayscale(1);
+}
+
+.inqSquadBox {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+p[data-field="inquisitorial"] {
+  font-size: 2rem;
   cursor: pointer;
 }

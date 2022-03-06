@@ -218,13 +218,23 @@ button:hover {
   height: 100vh;
 }
 
+#remove_prefect {
+  overflow-y: scroll;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
 .crest {
   display: flex;
   width: 25%;
   justify-content: flex-start;
 }
 
-#popup article {
+#popup article,
+#remove_prefect article {
   max-width: 600px;
   display: flex;
   margin: 8rem auto;
@@ -283,4 +293,16 @@ p[data-field="prefect"][data-prefect="false"]::after {
 p[data-field="inquisitorial"] {
   font-size: 2rem;
   cursor: pointer;
+}
+
+div {
+  display: block;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.sidebyside {
+  display: flex;
 }

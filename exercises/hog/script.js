@@ -240,6 +240,9 @@ async function loadJSON() {
         }
 
 
+
+        //Adding eventlistener for inq + prefect
+
         //Inq squad goals
         if (student.inquisitorial === true){
             clone.querySelector("[data-field=inquisitorial]").textContent = "⭐";
@@ -249,13 +252,27 @@ async function loadJSON() {
             
         }
 
-        //Adding eventlistener for inq + prefect
+        //Prefect goals
+        clone.querySelector("[data-field=prefect]").dataset.prefect = student.prefect;
+
+
+        //Adding click event for inq and prefect
         clone.querySelector("[data-field=inquisitorial]").addEventListener("click", clickInq);
+        clone.querySelector("[data-field=prefect]").addEventListener("click", clickPref);
+
+        function clickPref(){
+            if(student.prefect === true){
+                student.prefect = false;
+            } else {
+               tryToPrefect(student);
+            }
+            displayList(allStudents);
+        }
 
         function clickInq(){
         if(student.blood === "Pureblood 🩸" || student.house === "Slytherin"){
             if(student.inquisitorial === true){
-                student.inquisitorial = true;
+                student.inquisitorial = false;
             } else {
                 student.inquisitorial = true;
             }
@@ -272,6 +289,69 @@ async function loadJSON() {
         document.querySelector("#student_list").appendChild( clone );
 
     } 
+
+    function tryToPrefect(selectedStudent){
+
+        const prefects = allStudents.filter((student) => student.prefect && student.house === selectedStudent.house);
+        const numberOfPrefect = prefects.length;
+
+        console.log(`There are ${numberOfPrefect}`);
+        
+        if (numberOfPrefect >= 2){
+            console.log("NO STOP THIS");
+            removeAorB(prefects[0], prefects[1]);
+        } else {
+            makePrefect(selectedStudent);
+        }
+
+        displayList(allStudents);
+
+        makePrefect(selectedStudent);
+
+        function removeAorB(prefectA, prefectB){
+            
+
+
+
+            document.querySelector("#remove_prefect").classList.remove("hide");
+
+            document.querySelector("#remove_prefect .closeDialogBtn").addEventListener("click", closeDialog);
+            document.querySelector("#remove_prefect #removeA").addEventListener("click", clickRemoveA);
+            document.querySelector("#remove_prefect #removeB").addEventListener("click", clickRemoveB);
+
+            function closeDialog(){
+                document.querySelector("#remove_prefect").classList.add("hide");
+                document.querySelector("#remove_prefect .closeDialogBtn").removeEventListener("click", closeDialog);
+                document.querySelector("#remove_prefect #removeA").removeEventListener("click", clickRemoveA);
+                document.querySelector("#remove_prefect #removeB").removeEventListener("click", clickRemoveB);
+            }
+            
+            function clickRemoveA(){ 
+            removePrefect(prefectA);
+            makePrefect(selectedStudent);
+            displayList(allStudents);
+            closeDialog();
+
+        }
+
+            function clickRemoveB(){
+            removePrefect(prefectB);
+            makePrefect(selectedStudent);
+            displayList(allStudents);
+            closeDialog();
+            }
+
+        }
+
+        function removePrefect(prefectStudent){
+            prefectStudent.prefect = false;
+        }
+
+        function makePrefect (student){
+            student.prefect = true;
+        }
+
+    }
 
 //Here I make my search function
 function searchInput(evt){
@@ -306,6 +386,9 @@ function searchInput(evt){
         popup.querySelector("[data-field=inquisitorial]").textContent = "☆";
         
     }
+
+       //Prefect goals
+       popup.querySelector("[data-field=prefect]").dataset.prefect = student.prefect;
 
     //set display style to block to make visible
     popup.style.display = "block";

@@ -46,6 +46,7 @@ function registerButtons(){
     
 }
 
+
 //Here is the event and if statement for the filterfunction
  function studentClick(evt){
     const myFilter = evt.target.dataset.filter;
@@ -56,23 +57,22 @@ function registerButtons(){
         isStudent(myFilter);
     }
 
-    //console.log("Yo", evt.target.dataset.filter);
+    console.log("Yo", evt.target.dataset.filter);
 }
 
-//Here is my filter function for each houses
-function isStudent(house){
-    //console.log("House", house);
+function sortList(){
+    const list = allStudents;
 
-    let list = allStudents.filter(isStudentType);
+   const sortedList = list.sort(sortByName);
+    displayList(sortedList);
+}
 
-    function isStudentType(student){
-        if(student.house === house){
-            return true;
-        } else {
-            return false;
-        }
+function sortByName(studentA, studentB){
+    if(studentA.name < studentB.name){
+        return 1;
+    }else{
+        return -1;
     }
-    displayList(list);
 }
 
 
@@ -179,6 +179,7 @@ async function loadJSON() {
         //Calling my functions
         displayList(allStudents);
         countingStudent(allStudents);
+        bloodType(allStudents);
 
 
     }
@@ -191,21 +192,38 @@ async function loadJSON() {
         allStudents.forEach((student) => {
             pureblood.forEach((pure) => {
                 if (student.lastname === pure) {
-                    student.blood = "Pureblood 🩸";
+                    student.blood = "Pureblood";
                 } else
                     halfblood.forEach((half) => {
                         if (student.lastname === half) {
-                            student.blood = "Halfblood ✨";
+                            student.blood = "Halfblood";
                         }
                     });
             });
     
             if (!student.blood) {
-                student.blood = "Muggle 👀";
+                student.blood = "Muggle";
             }
         });
     displayList(allStudents);
     }
+
+    //Here is my filter function for each houses
+function isStudent(house, blood){
+    //console.log("House", house);
+
+    let list = allStudents.filter(isStudentType);
+
+    function isStudentType(student){
+        if(student.house === house || student.blood === blood){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    displayList(list);
+}
 
     //Here is my displaylist function where I copy my array into the displaystudent function
      function displayList(students){
@@ -290,6 +308,7 @@ async function loadJSON() {
 
     } 
 
+    //Here I make my prefect function and ITS WORKING
     function tryToPrefect(selectedStudent){
 
         const prefects = allStudents.filter((student) => student.prefect && student.house === selectedStudent.house);
@@ -319,6 +338,9 @@ async function loadJSON() {
             document.querySelector("#remove_prefect #removeA").addEventListener("click", clickRemoveA);
             document.querySelector("#remove_prefect #removeB").addEventListener("click", clickRemoveB);
 
+            document.querySelector("#remove_prefect [data-field=firstnamea]").textContent = prefectA.firstname + "😨";
+            document.querySelector("#remove_prefect [data-field=firstnameb]").textContent = prefectB.firstname + "🧙‍♂️";
+
             function closeDialog(){
                 document.querySelector("#remove_prefect").classList.add("hide");
                 document.querySelector("#remove_prefect .closeDialogBtn").removeEventListener("click", closeDialog);
@@ -343,8 +365,8 @@ async function loadJSON() {
 
         }
 
-        function removePrefect(prefectStudent){
-            prefectStudent.prefect = false;
+        function removePrefect(student){
+            student.prefect = false;
         }
 
         function makePrefect (student){

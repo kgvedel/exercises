@@ -278,10 +278,12 @@ button:hover {
 /* Prefect/winner styling */
 p[data-field="prefect"]::after {
   content: "🏆";
+  cursor: pointer;
 }
 
 p[data-field="prefect"][data-prefect="false"]::after {
   filter: grayscale(1);
+  cursor: pointer;
 }
 
 .inqSquadBox {
@@ -305,4 +307,5 @@ div {
 
 .sidebyside {
   display: flex;
+  gap: 20px;
 }

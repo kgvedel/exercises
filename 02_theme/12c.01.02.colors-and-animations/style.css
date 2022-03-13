@@ -5,6 +5,15 @@
   list-style: none;
 }
 
+:root {
+  --color-primary1: #fff;
+  --color-primary2: #ffdeed;
+  --color-secondary1: #f00271;
+  --color-secondary2: #ffaed9;
+  --color-secondary3: black;
+  --color-accent1: #0400ff;
+}
+
 /* Fonts */
 body {
   font-family: "Poppins", sans-serif;
@@ -14,7 +23,7 @@ body {
 h1,
 h2,
 h3 {
-  color: #111;
+  color: var(--color-secondary3);
   font-family: "Noto Serif Display", serif;
   margin-bottom: 1rem;
 }
@@ -26,6 +35,7 @@ h1 {
 h2 {
   font-size: 1.953rem;
   line-height: 2.5rem;
+  color: var(--color-secondary3);
 }
 
 h3 {
@@ -35,7 +45,7 @@ h3 {
 }
 
 p {
-  color: #222;
+  color: var(--color-secondary1);
   font-family: "Poppins", sans-serif;
   line-height: 1.5rem;
   margin-bottom: 1rem;
@@ -43,7 +53,7 @@ p {
 
 a {
   text-decoration: none;
-  color: #222;
+  color: var(--color-accent1);
 }
 
 a:hover {
@@ -59,12 +69,12 @@ button {
   font-size: 1rem;
   text-align: center;
   text-decoration: none;
-  background-color: #222;
+  background-color: var(--color-accent1);
   color: #eee;
 }
 
 .dark_button {
-  background-color: #000;
+  background-color: var(--color-accent1);
 }
 
 input[type="text"] {
@@ -74,22 +84,22 @@ input[type="text"] {
   padding: 1rem 1rem;
   font-size: 1rem;
   text-align: left;
-  background-color: #eee;
-  border-color: #ddd;
+  background-color: var(--color-primary1);
+  border-color: var(--color-secondary2);
   color: #222;
 }
 
 /* Menu */
-nav{
+nav {
   display: flex;
   padding: 1rem;
   justify-content: space-between;
   align-items: center;
-  background-color: #111;
+  background-color: var(--color-primary2);
 }
 
 nav a {
-  color: white;
+  color: var(--color-secondary1);
   text-decoration: none;
 }
 
@@ -111,19 +121,25 @@ header {
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  background-color: #222;
+  background-color: var(--color-primary2);
 }
 
 header h1 {
-  color: #eee;
+  color: var(--color-secondary3);
 }
 
 header p {
-  color: #ddd;
+  color: var(--color-secondary1);
 }
 
 header button {
   margin-bottom: 5rem;
+  border-radius: 6px;
+}
+
+header button:hover {
+  transform: scale(1.05, 1.05);
+  box-shadow: 1px 1px 5px #86747c;
 }
 
 .header_text {
@@ -137,13 +153,13 @@ header button {
   min-width: 300px;
   min-height: 300px;
   border-radius: 300px;
-  background-color: #111;
+  background-color: var(--color-secondary2);
 }
 
 /* product section */
 #product {
   padding: 2rem;
-  background-color: #ddd;
+  background-color: var(--color-primary2);
 }
 
 #product h3 {
@@ -158,6 +174,7 @@ header button {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
+  background-color: var(--color-primary2);
 }
 
 .product_text {
@@ -171,7 +188,7 @@ header button {
   min-width: 150px;
   min-height: 150px;
   margin: 3rem;
-  background-color: #ccc;
+  background-color: var(--color-secondary2);
   border-radius: 300px;
 }
 
@@ -182,6 +199,7 @@ header button {
   padding: 2rem;
   align-items: center;
   justify-content: space-around;
+  background-color: var(--color-secondary2);
 }
 
 .highlight div {
@@ -191,10 +209,11 @@ header button {
 .highlight div h2 {
   font-size: 3.052rem;
   line-height: 4rem;
+  color: var(--color-secondary3);
 }
 
 .dark {
-  background-color: #222;
+  background-color: var(--color-secondary2);
 }
 
 .dark h2 {
@@ -202,8 +221,8 @@ header button {
 }
 
 .dark a {
-  color: #ccc;
-} 
+  color: var(--color-accent1);
+}
 
 /* request section */
 #request {
@@ -212,7 +231,7 @@ header button {
   padding: 2rem;
   align-items: center;
   justify-content: space-around;
-  background-color: #ccc;
+  background-color: var(--color-primary2);
 }
 
 #request div {
@@ -227,16 +246,17 @@ footer {
   align-items: top;
   flex-wrap: wrap;
   justify-content: space-between;
-  background-color: #111;
-  color: #ddd;
+  background-color: var(--color-primary2);
+  color: var(--color-secondary1);
 }
 
-footer h2, footer h3 {
-  color: #eee;
+footer h2,
+footer h3 {
+  color: var(--color-secondary1);
 }
 
 footer a {
-  color: #ddd;
+  color: var(--color-secondary1);
 }
 
 footer section.left {

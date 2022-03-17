@@ -14,6 +14,10 @@
   /* you could add an accent color for CTAs and anchor tags ;-) */
 }
 
+main {
+  background-color: var(--color-light);
+}
+
 /* Fonts */
 h1,
 h2,
@@ -29,18 +33,25 @@ p {
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 3rem;
   padding-bottom: 1rem;
-  font-family: "Six Caps", sans-serif;
+  font-family: "Merriweather", serif;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 2.44rem;
   padding-bottom: 1rem;
+  font-weight: bolder;
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.95rem;
+  font-weight: bolder;
+}
+
+h4 {
+  font-size: 1.44rem;
+  font-weight: bolder;
 }
 
 p {
@@ -51,7 +62,26 @@ p {
 /* UI Elements */
 .arBtn {
   display: flex;
-  align-items: baseline;
+  justify-content: center;
+  padding-bottom: 1rem;
+  gap: 2rem;
+}
+
+.card_button_negative {
+  padding: 1rem 2rem;
+  border: none;
+  cursor: pointer;
+}
+.card_button_positive {
+  padding: 1rem 2rem;
+  border: none;
+  cursor: pointer;
+  background-color: var(--color-dark);
+  color: var(--color-lighter);
+}
+
+.card_button_positive:hover {
+  background-color: var(--color-darker);
 }
 
 button {
@@ -137,7 +167,7 @@ header {
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  background-color: var(--color-light);
+  background-color: var(--color-lighter);
 }
 
 .intro_text {
@@ -157,18 +187,55 @@ header {
   width: 100%;
   height: a;
   object-fit: contain;
+  filter: contrast(70%);
+}
+
+.card_image:hover {
+  cursor: pointer;
+  filter: contrast(100%);
 }
 
 #cards {
-  min-height: 80vh;
-  padding: 5rem 2rem;
+  margin: 2rem;
+}
+
+.card {
+  flex: 1 0 300px;
+  box-sizing: border-box;
+  margin: 1rem 0.25em;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.418);
+}
+
+.card_name,
+.card_slogan,
+.card_title,
+.card_mail {
+  padding: 1rem;
+}
+
+@media screen and (min-width: 40em) {
+  #cards {
+    justify-content: space-between;
+  }
+
+  .card {
+    flex: 0 1 calc(50% - 1rem);
+  }
+}
+
+@media screen and (min-width: 70em) {
+  .card {
+    flex: 0 1 calc(25% - 1rem);
+  }
 }
 
 #card_container {
-  display: grid;
-  margin-top: 2rem;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 #info {
@@ -177,7 +244,7 @@ header {
   padding-left: 2rem;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-light);
+  background-color: var(--color-lighter);
 }
 
 .info_text {

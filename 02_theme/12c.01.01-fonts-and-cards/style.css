@@ -60,11 +60,6 @@ p {
 }
 
 /* UI Elements */
-.arBtn {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-}
 
 .card_button_negative {
   padding: 1rem 2rem;
@@ -203,16 +198,13 @@ header {
   box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.418);
 }
 
-.card_name,
-.card_slogan,
-.card_title,
-.card_mail {
-  padding-bottom: 1rem;
+.content {
+  position: static;
 }
 
 .arBtn {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 10px;
   margin: 1rem;
 }

@@ -1,0 +1,203 @@
+img {
+  display: block;
+}
+
+/* Color Properties */
+:root {
+  --color-dark: rgb(0, 0, 0);
+  --color-secondary: rgb(64, 64, 64);
+  --color-lighter: rgb(255, 255, 255);
+  /* you could add an accent color for CTAs and anchor tags ;-) */
+}
+
+h1 {
+  font-size: 3rem;
+  padding-bottom: 1rem;
+  font-family: "Merriweather", serif;
+}
+
+h2 {
+  font-size: 2.44rem;
+  padding-bottom: 1rem;
+  font-weight: bolder;
+}
+
+h3 {
+  font-size: 1.95rem;
+  font-weight: bolder;
+}
+
+h4 {
+  font-size: 1.44rem;
+  font-weight: bolder;
+}
+
+p {
+  color: var(--color-dark);
+  font-size: 16px;
+}
+
+nav {
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  list-style: none;
+}
+
+header {
+  display: flex;
+  min-height: 80vh;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.header_graphics {
+  width: 30vw;
+  height: 30vw;
+  min-width: 300px;
+  min-height: 300px;
+  overflow: hidden;
+  border-radius: 100px;
+}
+.header_graphics img {
+  display: block;
+  object-fit: fill;
+  width: 100%;
+  height: a;
+}
+
+.advantages_cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.advantages_card {
+  flex: 1 0 300px;
+  box-sizing: border-box;
+  margin: 1rem 0.25em;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.315);
+}
+
+.advantages_card_graphics img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.advantages_card_graphics {
+  height: 50%;
+}
+
+@media screen and (min-width: 40em) {
+  .advantages_cards {
+    justify-content: space-between;
+  }
+
+  .advantages_card {
+    flex: 0 1 calc(50% - 1rem);
+  }
+  #contact_form {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (min-width: 70em) {
+  .advantages_card {
+    flex: 0 1 calc(25% - 1rem);
+  }
+}
+
+.product_container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.product_graphics img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product_graphics {
+  width: 30vw;
+  height: 30vw;
+}
+
+.team_graphics img {
+  width: 100%;
+  height: 40%;
+  object-fit: contain;
+}
+
+#team {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.team_graphics {
+  flex: 1 0 300px;
+  justify-content: space-between;
+}
+
+.team_text {
+  flex: 1 0 300px;
+  justify-content: space-between;
+}
+
+.form_group {
+  display: flex;
+  flex-direction: column;
+}
+
+#contact_form {
+  display: grid;
+  gap: 50px;
+  grid-template-columns: 1fr 2fr;
+}
+
+button {
+  display: inline-block;
+  height: 3rem;
+  padding: 0rem 1rem;
+  border: none;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--color-dark);
+  color: var(--color-lighter);
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+  flex-wrap: wrap;
+}
+
+footer section {
+  gap: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+}
+
+footer ul {
+  list-style: none;
+}

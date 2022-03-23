@@ -1,0 +1,277 @@
+/* Resetter */
+* {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+/* Color Properties */
+:root {
+  --color-darker: rgb(48, 48, 48);
+  --color-dark: rgb(64, 64, 64);
+  --color-light: rgb(194, 194, 194);
+  --color-lighter: rgb(255, 255, 255);
+  /* you could add an accent color for CTAs and anchor tags ;-) */
+}
+
+main {
+  background-color: var(--color-light);
+}
+
+/* Fonts */
+h1,
+h2,
+h3 {
+  color: var(--color-darker);
+}
+
+h2,
+h3,
+p {
+  font-family: "Open Sans", sans-serif;
+  padding-bottom: 1rem;
+}
+
+h1 {
+  font-size: 3rem;
+  padding-bottom: 1rem;
+  font-family: "Merriweather", serif;
+}
+
+h2 {
+  font-size: 2.44rem;
+  padding-bottom: 1rem;
+  font-weight: bolder;
+}
+
+h3 {
+  font-size: 1.95rem;
+  font-weight: bolder;
+}
+
+h4 {
+  font-size: 1.44rem;
+  font-weight: bolder;
+}
+
+p {
+  color: var(--color-dark);
+  font-size: 16px;
+}
+
+/* UI Elements */
+
+.card_button_negative {
+  padding: 1rem 2rem;
+  border: none;
+  cursor: pointer;
+}
+.card_button_positive {
+  padding: 1rem 2rem;
+  border: none;
+  cursor: pointer;
+  background-color: var(--color-dark);
+  color: var(--color-lighter);
+}
+
+.card_button_positive:hover {
+  background-color: var(--color-darker);
+}
+
+button {
+  display: inline-block;
+  height: 3rem;
+  padding: 0rem 1rem;
+  border: none;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--color-darker);
+  color: var(--color-lighter);
+}
+
+.light_button {
+  background-color: var(--color-lighter);
+  color: var(--color-darker);
+}
+
+input[type="text"] {
+  box-sizing: border-box;
+  width: 250px;
+  height: 3rem;
+  padding: 1rem 1rem;
+  font-size: 1rem;
+  text-align: left;
+  background-color: var(--color-lighter);
+  border-color: var(--color-light);
+  color: var(--color-dark);
+}
+
+/* Menu */
+nav {
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-darker);
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Header */
+header {
+  display: flex;
+  min-height: 80vh;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 1rem;
+  background-color: var(--color-dark);
+}
+
+.header_text {
+  width: 40vw;
+  min-width: 300px;
+}
+
+.header_text h1 {
+  color: var(--color-lighter);
+}
+
+.header_text p {
+  color: var(--color-light);
+}
+
+.header_graphics {
+  width: 35vw;
+  height: 35vw;
+  min-width: 300px;
+  min-height: 300px;
+  background-color: var(--color-darker);
+}
+
+/* Sections */
+#intro {
+  display: flex;
+  min-height: 80vh;
+  padding: 0px 15rem;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background-color: var(--color-lighter);
+}
+
+.intro_text {
+  width: 40vw;
+  min-width: 450px;
+}
+
+.intro_graphics {
+  width: 15vw;
+  height: 15vw;
+  min-width: 150px;
+  min-height: 150px;
+  background-color: var(--color-dark);
+}
+
+.card_image {
+  width: 100%;
+  height: a;
+  object-fit: contain;
+}
+
+#cards {
+  margin: 2rem;
+}
+
+.card {
+  flex: 1 0 300px;
+  box-sizing: border-box;
+  margin: 1rem 0.25em;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.418);
+}
+
+.arBtn {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 1rem;
+}
+
+@media screen and (min-width: 40em) {
+  #cards {
+    justify-content: space-between;
+  }
+
+  .card {
+    flex: 0 1 calc(50% - 1rem);
+  }
+}
+
+@media screen and (min-width: 70em) {
+  .card {
+    flex: 0 1 calc(25% - 1rem);
+  }
+}
+
+#card_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#info {
+  display: flex;
+  min-height: 80vh;
+  padding-left: 2rem;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-lighter);
+}
+
+.info_text {
+  width: 60vw;
+  min-width: 300px;
+}
+
+#contact {
+  display: flex;
+  min-height: 80vh;
+  padding-left: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Footer */
+footer {
+  display: flex;
+  padding: 5vh 2rem;
+  align-items: top;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: var(--color-darker);
+  color: var(--color-lighter);
+}
+
+footer a {
+  color: var(--color-light);
+}
+
+footer section {
+  display: flex;
+  max-width: 50vw;
+  align-items: top;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+footer section div {
+  margin: 0px 1rem 1rem 1rem;
+}
